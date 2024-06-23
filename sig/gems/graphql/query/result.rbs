@@ -1,0 +1,13 @@
+module GraphQL
+  class Query
+    class Result
+      attr_reader query: Query
+      attr_reader to_h: Hash[untyped, untyped]
+
+      def initialize: (query: Query, to_h: Hash[untyped, untyped]) -> void
+      # def method_missing
+      def inspect: () -> String
+      def ==: (other: Result) -> bool
+    end
+  end
+end

@@ -1,0 +1,66 @@
+module GraphQL
+  class Query
+    attr_reader schema: untyped
+    attr_reader context: untyped
+    attr_reader provided_variables: untyped
+    attr_reader validate: bool
+    attr_reader static_validator: untyped
+    attr_reader subscription_topic: untyped
+    attr_reader tracers: untyped
+    attr_reader logger: untyped
+
+    attr_accessor root_value: untyped
+    attr_accessor operation_name: String
+    attr_accessor multiplex: untyped
+    attr_accessor analysis_errors: untyped
+
+    attr_writer query_string: String
+
+    def validate=: (bool) -> void
+    def document: () -> untyped # Language::Nodes::Document
+    def inspect: () -> String
+    def selected_operation_name: () -> (nil | String)
+    def initialize: (Schema, ?String,
+      query: String,
+      document: untyped,
+      context: untyped,
+      variables: untyped,
+      validate: bool,
+      static_validator: untyped,
+      subscription_topic: untyped,
+      operation_name: String,
+      root_value: untyped,
+      max_depth: untyped,
+      max_complexity: untyped,
+      warden: untyped,
+    ) -> void
+    def query_string: () -> (nil | String)
+    def inspecter?: () -> bool
+    def current_trace: () -> untyped # Tracing::Trace
+    def subscription_update?: () -> bool
+    def lookahed: () -> untyped # Execution::Lookahead
+    def result_values=: (untyped) -> void
+    def fragments: () -> untyped
+    def operations: () -> untyped
+    def result: () -> Result
+    def executed?: () -> bool
+    def static_errors: () -> untyped
+    def selected_opeartion: () -> untyped # Langage::Nodes::OperationDefinition | nil
+    def variables: () -> untyped # Query::Variables
+    def arguments_for: (untyped, untyped, parent_object: untyped) -> Hash[Symbol, Object]
+    def arguments_cache: () -> untyped
+    def sanitized_query_string: (inline_variables: bool) -> (nil | String)
+    def fingerprint: () -> String
+    def operation_fingerprint: () -> String
+    def variables_fingerprint: () -> String
+    def validation_pipeline: () -> untyped
+    def valid?: () -> bool
+    def warden: () -> untyped
+    def resolve_type: (untyped, Object) -> untyped # ObjectType | nil
+    def mutation?: () -> bool
+    def query?: () -> bool
+    def subscription?: () -> bool
+    def handle_or_reraise: (untyped) -> void
+    def after_lazy: (untyped) -> void
+  end
+end

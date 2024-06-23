@@ -1,0 +1,9 @@
+module Types
+  class QueryType < Types::BaseObject
+    def node: (id: untyped) -> untyped
+
+    def nodes: (ids: untyped) -> untyped
+
+    def test_field: () -> "Hello World!"
+  end
+end

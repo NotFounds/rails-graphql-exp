@@ -1,0 +1,6 @@
+module GraphQL
+  class Schema
+    def self.execute: (?String, **untyped) -> GraphQL::Query::Result
+    def self.multiplex: (Array[Hash[untyped, untyped]], **untyped) -> Array[GraphQL::Query::Result]
+  end
+end

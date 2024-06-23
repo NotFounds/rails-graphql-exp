@@ -1,0 +1,5 @@
+module Resolvers
+  class PostResolver < BaseResolver
+    def resolve: (database_id: Integer) -> ::Post
+  end
+end
