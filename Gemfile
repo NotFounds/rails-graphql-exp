@@ -59,6 +59,11 @@ group :development do
   gem "erb_lint"
   gem "annotate"
 
+  gem "katakata_irb", require: false
+  gem "steep", "~> 1.7", require: false
+  gem "rbs_rails", "~> 0.12.0", require: false
+  gem "typeprof", require: false
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

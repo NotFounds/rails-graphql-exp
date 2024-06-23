@@ -1,0 +1,8 @@
+class GraphqlController < ApplicationController
+  def execute: () -> void
+
+  private
+
+  def prepare_variables: (untyped variables_param) -> untyped
+  def handle_error_in_development: (untyped e) -> untyped
+end
