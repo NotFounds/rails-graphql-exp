@@ -1,3 +1,4 @@
 class DevController < ApplicationController
   def sandbox: () -> void
+  def voyager: () -> void
 end
