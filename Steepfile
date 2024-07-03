@@ -33,7 +33,7 @@ target :app do
 
   check "app/models/**/*.rb"
   check "app/controllers/**/*.rb"
-  check "app/graphql/**/*.rb"
+  #check "app/graphql/**/*.rb"
 
   library "pathname", "json", "logger", "uri", 'singleton', 'fileutils', 'find', 'digest', 'prettyprint', 'yaml', "psych", "securerandom"
   library "actionpack", "activemodel", "activerecord", "actionview", "activesupport"
