@@ -3,32 +3,36 @@ return unless Rails.env.development?
 require 'rbs_rails/rake_task'
 
 namespace :rbs do
-  task setup: %i[clean collection rbs_rails:all]
-  # prototype+subtractを活用したいところだが、自前の型定義が必要になるため保留中
-  # task setup: %i[clean collection prototype rbs_rails:all subtract]
+  task setup: %i(clean collection)
+  task generate: %i(prototype rbs_rails_all subtract)
 
   task :clean do
-    sh 'rm', '-rf', 'sig/'
+    sh 'rm', '-rf', 'sig/rbs_rails/'
+    sh 'rm', '-rf', 'sig/prototype/'
     sh 'rm', '-rf', '.gem_rbs_collection/'
   end
 
   task :collection do
-    sh 'rbs', 'collection', 'update'
+    sh 'rbs', 'collection', 'install'
   end
 
-  task :generate do
-    sh 'rbs', 'prototype', 'rb', '--out-dir=sig', '--base-dir=.', 'app'
+  task :prototype do
+    sh 'rbs', 'prototype', 'rb', '--force', '--out-dir=sig/prototype', '--base-dir=.', 'app'
+  end
+
+  task :rbs_rails_all do
+    sh 'rails', 'rbs_rails:all'
   end
 
   task :subtract do
-    sh 'rbs', 'subtract', '--write', 'sig/app', 'sig/rbs_rails'
+    sh 'rbs', 'subtract', '--write', 'sig/prototype/app', 'sig/rbs_rails'
 
-    app_path = Rails.root.join('sig/app')
+    prototype_path = Rails.root.join('sig/prototype')
     rbs_rails_path = Rails.root.join('sig/rbs_rails')
-    subtrahends = Rails.root.glob('sig/*')
-                       .reject { |path| path == app_path || path == rbs_rails_path }
-                       .map { |path| "--subtrahend=#{path}" }
-    sh 'rbs', 'subtract', '--write', 'sig/app', 'sig/rbs_rails', *subtrahends
+    subtrahends = Rails.root.glob('sig/*').
+      reject { |path| path == prototype_path || path == rbs_rails_path }.
+      map { |path| "--subtrahend=#{path}" }
+    sh 'rbs', 'subtract', '--write', 'sig/prototype', 'sig/rbs_rails', *subtrahends
   end
 
   task :validate do

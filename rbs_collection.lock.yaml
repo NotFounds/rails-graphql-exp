@@ -133,11 +133,23 @@ gems:
   version: '0'
   source:
     type: stdlib
+- name: faraday
+  version: '2.5'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 1771b17ff3cd2889fdaf6dfb2b926b7454a2437a
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: fileutils
   version: '0'
   source:
     type: stdlib
 - name: find
+  version: '0'
+  source:
+    type: stdlib
+- name: forwardable
   version: '0'
   source:
     type: stdlib

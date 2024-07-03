@@ -1,0 +1,5 @@
+module Types
+  class CommentType < Types::BaseObject
+    include GraphQL::Types::Relay::NodeBehaviors
+  end
+end
